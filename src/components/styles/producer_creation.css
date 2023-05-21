@@ -1,0 +1,13 @@
+.navbar {
+    background-color: #f8f9fa;
+}
+
+.navbar h2 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.producer-container {
+    background-color: #dadaf1;
+    border-radius: 10px;
+}

@@ -1,0 +1,54 @@
+body {
+    background-color: #dadaf1;
+}
+
+.navbar {
+    background-color: #f8f9fa;
+}
+
+.navbar h2 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.explore-container {
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.explore-container img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.explore-container h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.explore-container p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #6c757d;
+}
+
+.explore-container ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.explore-container li {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.explore-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}

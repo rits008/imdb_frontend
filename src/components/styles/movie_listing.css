@@ -1,0 +1,26 @@
+body {
+    background-color: #dadaf1;
+  }
+
+  .navbar {
+    background-color: #f8f9fa;
+  }
+
+  .navbar h2 {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .listing-container {
+    background-color: #dadaf1;
+    border-radius: 10px;
+  }
+  .listing-container h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .listing-container p {
+    font-size: 1rem;
+    color: #6c757d;
+  }
