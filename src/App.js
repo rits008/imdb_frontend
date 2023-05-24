@@ -9,6 +9,8 @@ import MovieListing from './components/movieListing';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import NavBar from './components/Navbar';
+import GenreCreation from './components/genreCreation';
+import Footer from './components/Footer';
 function App() {
   
   return (
@@ -23,9 +25,11 @@ function App() {
           <Route path="/moviecreation" element={<MovieCreation />} />
           <Route path="/actorcreation" element={<ActorCreation />} />
           <Route path="/producercreation" element={<ProducerCreation />} />
+          <Route path="/genrecreation" element={<GenreCreation/>}/>
         </Routes>
       </div>
     </Router>
+    <Footer/>
     </>
   
   );

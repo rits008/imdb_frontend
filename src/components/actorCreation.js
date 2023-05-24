@@ -1,31 +1,40 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import "./styles/actor_creation.css";
+import { Container, Button, TextField, Paper } from "@mui/material";
+import { Box } from "@mui/system";
+import Grid from "@mui/material/Grid";
+import { styled } from "@mui/system";
 
+const Form = styled("form")({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "32px",
+});
+const LogoImage = styled("img")({
+  width: "100px",
+  height: "100px",
+  marginBottom: "16px",
+  borderRadius: "50%",
+});
 
 function ActorCreation() {
-
-  const [formData,setFormdata] = useState({
-    name:"",
-    bio:"",
-    dob:undefined,
-    gender:""
+  const [formData, setFormData] = useState({
+    name: "",
+    bio: "",
+    dob: undefined,
+    gender: "",
   });
 
-
-  const handleInputChange = (e) =>
-  {
-    const {name,value} = e.target;
-    setFormdata((prevdata) =>({
-      ...prevdata,
-      [name]:value,
-    })
-    )
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = async(e)=>
-  {
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch("http://localhost:58873/actors/", {
@@ -36,82 +45,89 @@ function ActorCreation() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        console.log("created")
+        console.log("created");
       } else {
-         console.log("else")
+        console.log("else");
       }
     } catch (error) {
       console.log(error);
     }
-
-  }
+  };
 
   return (
-    <div>
-      <div className="container mt-4">
-        <button type="button" className="btn btn-light mb-4" id="actor-close">
-         close
-        </button>
-        <div className="actor-container">
-          <form className="p-4" onSubmit={handleSubmit}>
-            <div className="form-group pb-4">
-              <label htmlFor="exampleInputName">Actor Name</label>
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputName"
-                placeholder="Enter Actor Name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-group pb-4">
-              <label htmlFor="exampleInputBio">Bio</label>
-              <textarea
-                className="form-control"
-                id="exampleInputBio"
-                rows="3"
-                placeholder="Enter Bio Here"
-                name="bio"
-                value={formData.bio}
-                onChange={handleInputChange}
-              ></textarea>
-            </div>
-            <div className="form-group pb-4">
-              <label htmlFor="exampleInputDateofBirth">Date of Birth</label>
-              <input
-                type="date"
-                className="form-control"
-                id="exampleInputDateofBirth"
-                placeholder=""
-                name="dob"
-                value={formData.dob}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-group pb-4">
-              <label htmlFor="exampleInputGender">Gender</label>
-              <select 
-              className="form-control" 
-              id="exampleInputGender"
+    <Container maxWidth="sm">
+      <Box
+        sx={{
+          m: 4,
+          p: 1,
+          backgroundColor: "white",
+          borderRadius: 2,
+          boxShadow: 5,
+        }}
+      >
+        <Paper elevation={5}>
+          <Form onSubmit={handleSubmit}>
+            <LogoImage
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFj6WlBAWMBA6EHlNAcKDJCYb8OQjOZ1zeH6gvl-lhWJ3cpzp_nyQWT4NTLkeNu3TAbaw&usqp=CAU"
+              alt="Logo"
+            />
+            <h1>Create Actor</h1>
+            <TextField
+              label="Actor Name"
+              variant="filled"
+              type="text"
+              required
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              autoComplete="off"
+              sx={{ width: "100%", m: 2 }}
+            />
+            <TextField
+              label="Bio"
+              variant="filled"
+              multiline
+              required
+              rows={3}
+              name="bio"
+              value={formData.bio}
+              onChange={handleInputChange}
+              sx={{ width: "100%", m: 2 }}
+            />
+            <TextField
+              label="Date of Birth"
+              variant="filled"
+              type="date"
+              name="dob"
+              required
+              value={formData.dob}
+              onChange={handleInputChange}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              sx={{ width: "100%", m: 2 }}
+            />
+            <TextField
+              select
+              label="Gender"
+              variant="filled"
               name="gender"
+              required
               value={formData.gender}
               onChange={handleInputChange}
-              >
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <button type="submit" className="btn btn-primary">
+              sx={{ width: "100%", m: 2 }}
+            >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </TextField>
+            <Button type="submit" variant="contained" color="primary">
               Add
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
+            </Button>
+          </Form>
+        </Paper>
+      </Box>
+    </Container>
   );
 }
 

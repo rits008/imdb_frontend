@@ -1,6 +1,23 @@
 import React, { useState } from "react";
+import { Container, Button, TextField, Paper } from "@mui/material";
+import { Box } from "@mui/system";
+import Grid from "@mui/material/Grid";
+import { styled } from "@mui/system";
 
-import "./styles/producer_creation.css";
+const Form = styled("form")({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "32px",
+});
+const LogoImage = styled("img")({
+  width: "100px",
+  height: "100px",
+  marginBottom: "16px",
+  borderRadius: "50%",
+});
+
 function ProducerCreation() {
   const [formData, setFormData] = useState({
     name: "",
@@ -39,73 +56,79 @@ function ProducerCreation() {
 
   return (
     <>
-      <div className="container mt-4">
-        <button
-          type="button"
-          className="btn btn-light mb-4"
-          id="producer-close"
+      <Container maxWidth="sm">
+        <Box
+          sx={{
+            m: 4,
+            p: 1,
+            backgroundColor: "white",
+            borderRadius: 2,
+            boxShadow: 5,
+          }}
         >
-          <span className="material-symbols-outlined">close</span>
-        </button>
-        <div className="producer-container">
-          <form className="p-4" onSubmit={handleSubmit}>
-            <div className="form-group pb-4">
-              <label htmlFor="exampleInputName">producer Name</label>
-              <input
+          <Paper elevation={5}>
+            <Form onSubmit={handleSubmit}>
+              <LogoImage
+                src="https://global-uploads.webflow.com/5e157548d6f7910beea4e2d6/637344e070d4831fc359501c_Producer-logo%20(2).jpg"
+                alt="Logo"
+              />
+              <h1>Create Producer</h1>
+              <TextField
+                label="Producer Name"
+                variant="filled"
                 type="text"
-                className="form-control"
-                id="exampleInputName"
-                placeholder="Enter producer Name"
+                required
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
+                autoComplete="off"
+                sx={{ width: "100%", m: 2 }}
               />
-            </div>
-            <div className="form-group pb-4">
-              <label htmlFor="exampleInputBio">Bio</label>
-              <textarea
-                className="form-control"
-                id="exampleInputBio"
-                rows="3"
-                placeholder="Enter Bio Here"
+              <TextField
+                label="Bio"
+                variant="filled"
+                multiline
+                required
+                rows={3}
                 name="bio"
                 value={formData.bio}
                 onChange={handleInputChange}
-              ></textarea>
-            </div>
-            <div className="form-group pb-4">
-              <label htmlFor="exampleInputDateofBirth">Date of Birth</label>
-              <input
+                sx={{ width: "100%", m: 2 }}
+              />
+              <TextField
+                label="Date of Birth"
+                variant="filled"
                 type="date"
-                className="form-control"
-                id="exampleInputDateofBirth"
-                placeholder=""
                 name="dob"
+                required
                 value={formData.dob}
                 onChange={handleInputChange}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                sx={{ width: "100%", m: 2 }}
               />
-            </div>
-            <div className="form-group pb-4">
-              <label htmlFor="exampleInputGender">Gender</label>
-              <select
-                className="form-control"
-                id="exampleInputGender"
+              <TextField
+                select
+                label="Gender"
+                variant="filled"
                 name="gender"
+                required
                 value={formData.gender}
                 onChange={handleInputChange}
+                sx={{ width: "100%", m: 2 }}
               >
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <button type="submit" className="btn btn-primary">
-              Add
-            </button>
-          </form>
-        </div>
-      </div>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </TextField>
+              <Button type="submit" variant="contained" color="primary">
+                Add
+              </Button>
+            </Form>
+          </Paper>
+        </Box>
+      </Container>
     </>
   );
 }

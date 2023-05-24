@@ -3,7 +3,6 @@ import { Navbar, Container, Button } from 'react-bootstrap';
 import { useLocation , useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/explore.css';
 import image1 from '../images/image1.jpg';
 
 function Explore({match}) {

@@ -1,5 +1,22 @@
 import React, { useState, useEffect } from "react";
-import "./styles/movie_creation.css";
+import { Container, Button, TextField, Paper, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import { Box } from "@mui/system";
+import Grid from "@mui/material/Grid";
+import { styled } from "@mui/system";
+
+const Form = styled("form")({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "32px",
+});
+const LogoImage = styled("img")({
+  width: "100px",
+  height: "100px",
+  marginBottom: "16px",
+  borderRadius:"50%",
+});
 
 function MovieCreation() {
   const [actors, setActors] = useState([]);
@@ -58,25 +75,33 @@ function MovieCreation() {
       [name]: value,
     }));
   };
+
   const handleActorSelection = (e) => {
-    const selectedActors = Array.from(e.target.selectedOptions, (option) =>
-      Number(option.value)
-    );
+    const selectedActors = Array.isArray(e.target.value) ? e.target.value.map(Number) : [];
     setFormData((prevData) => ({
       ...prevData,
       actorsId: selectedActors,
     }));
   };
 
-  const handleGenreSelection = (e) => {
-    const selectedGenres = Array.from(e.target.selectedOptions, (option) => {
-      const genreId = Number(option.value.split(":")[0]); // Extract the ID from the option value
-      const genreName = option.text.trim(); // Use the option text as the name
-      return { id: genreId, name: genreName };
-    });
+  const handleProducerSelection = (e) => {
+    const producerId = Number(e.target.value);
     setFormData((prevData) => ({
       ...prevData,
-      Genres: selectedGenres, // Update the property name to match the payload structure
+      producerId,
+    }));
+  };
+
+  const handleGenreSelection = (e) => {
+    const selectedGenres = Array.isArray(e.target.value)
+      ? e.target.value.map((genreValue) => {
+          const [genreId, genreName] = genreValue.split(":");
+          return { id: Number(genreId), name: genreName };
+        })
+      : [];
+    setFormData((prevData) => ({
+      ...prevData,
+      genres: selectedGenres,
     }));
   };
 
@@ -91,7 +116,9 @@ function MovieCreation() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
+        // handle success
       } else {
+        // handle error
       }
     } catch (error) {
       console.log(error);
@@ -100,118 +127,127 @@ function MovieCreation() {
 
   return (
     <>
-      <div className="container mt-4 mb-4">
-        <form className="p-4 movie-creation" onSubmit={handleSubmit}>
-          <div className="form-group pb-4">
-            <label htmlFor="exampleInputMovie">Movie Name</label>
-            <input
+      <Container maxWidth="sm">
+        <Box
+          sx={{
+            m: 4,
+            p: 1,
+            backgroundColor: "white",
+            borderRadius: 2,
+            boxShadow: 5,
+          }}
+        ><Paper elevation={5}>
+          <Form onSubmit={handleSubmit}>
+          <LogoImage src="https://i.pinimg.com/736x/7c/32/cf/7c32cf179c28869753c33028b06d443b.jpg" alt="Logo" />
+            <h1>Create Movie</h1>
+            <TextField
+              label="Movie Name"
+              variant="filled"
               type="text"
-              className="form-control"
-              id="exampleInputMovie"
+              required
               name="name"
-              placeholder="Enter Movie Name"
               value={formData.name}
               onChange={handleInputChange}
+              sx={{ width: "100%", m: 2 }}
             />
-          </div>
-
-          <div className="form-group pb-4">
-            <label htmlFor="exampleInputYearOfRelease">Year of Release</label>
-            <input
+            <TextField
+              label="Year of Release"
+              variant="filled"
               type="number"
-              className="form-control"
-              id="exampleInputYearOfRelease"
+              required
               name="yearOfRelease"
-              placeholder="Enter Release Year"
               value={formData.yearOfRelease}
               onChange={handleInputChange}
+              sx={{ width: "100%", m: 2 }}
             />
-          </div>
 
-          <div className="form-group pb-2">
-            <label htmlFor="exampleFormControlActor">Actor</label>
-            <select
-              className="form-control"
-              id="exampleFormControlActor"
-              multiple
-              name="actorsId"
-              value={formData.actorsId}
-              onChange={handleActorSelection}
-            >
-              {actors.map((actor) => (
-                <option key={actor.id} value={actor.id}>
-                  {actor.id} {actor.name}
-                </option>
-              ))}
-            </select>
-          </div>
-         
+            <FormControl sx={{ width: "100%", m: 2 }}>
+              <InputLabel id="actors-label">Actors</InputLabel>
+              <Select
+                multiple
+                required
+                labelId="actors-label"
+                variant="filled"
+                name="actorsId"
+                value={formData.actorsId}
+                onChange={handleActorSelection}
+              >
+                {actors.map((actor) => (
+                  <MenuItem key={actor.id} value={actor.id}>
+                    {actor.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-          <div className="form-group pb-2">
-            <label htmlFor="exampleFormControlProducer">Producer</label>
-            <select
-              className="form-control"
-              id="exampleFormControlProducer"
-              name="producerId"
-              value={formData.producerId}
-              onChange={handleInputChange}
-            >
-              {producers.map((producer) => (
-                <option key={producer.id} value={producer.id}>
-                  {producer.name}
-                </option>
-              ))}
-            </select>
-          </div>
-         
+            <FormControl sx={{ width: "100%", m: 2 }}>
+              <InputLabel id="producer-label">Producers</InputLabel>
+              <Select
+                required
+                labelId="producer-label"
+                variant="filled"
+                name="producerId"
+                value={formData.producerId}
+                onChange={handleProducerSelection}
+              >
+                {producers.map((producer) => (
+                  <MenuItem key={producer.id} value={producer.id}>
+                    {producer.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-          <div className="form-group pb-4">
-            <label htmlFor="exampleFormControlGenre">Genre</label>
-            <select
-              className="form-control"
-              id="exampleFormControlGenre"
-              multiple
-              onChange={handleGenreSelection}
-            >
-              {genres.map((genre) => (
-                <option key={genre.id} value={`${genre.id}:${genre.name}`}>
-                  {genre.name}
-                </option>
-              ))}
-            </select>
-          </div>
+            <FormControl sx={{ width: "100%", m: 2 }}>
+              <InputLabel id="genres-label">Genres</InputLabel>
+              <Select
+                multiple
+                required
+                labelId="genres-label"
+                variant="filled"
+                name="genres"
+                value={formData.genres.map((genre) => `${genre.id}:${genre.name}`)}
+                onChange={handleGenreSelection}
+              >
+                {genres.map((genre) => (
+                  <MenuItem key={genre.id} value={`${genre.id}:${genre.name}`}>
+                    {genre.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-          <div className="form-group pb-4">
-            <label htmlFor="exampleFormControlTextarea1">Plot</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
+            <TextField
+              label="Plot"
+              variant="filled"
+              multiline
+              rows={3}
+              required
               name="plot"
-              placeholder="Enter Plot Here"
               value={formData.plot}
               onChange={handleInputChange}
-            ></textarea>
-          </div>
-
-          <div className="form-group pb-4">
-            <label htmlFor="exampleFormControlTextarea1">Poster(URL)</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
+              sx={{ width: "100%", m: 2 }}
+            />
+            <TextField
+              label="Poster (URL)"
+              variant="filled"
+              multiline
+              rows={3}
+              required
               name="coverImage"
-              placeholder="Enter Poster URL"
               value={formData.coverImage}
               onChange={handleInputChange}
-            ></textarea>
-          </div>
-
-          <button type="submit" className="btn btn-primary">
-            Add
-          </button>
-        </form>
-      </div>
+              sx={{ width: "100%", m: 2 }}
+            />
+            <div>
+              <Button type="submit" variant="contained" color="primary">
+                Add
+              </Button>
+            </div>
+          </Form>
+          </Paper>
+        </Box>
+      </Container>
     </>
   );
 }

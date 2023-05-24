@@ -1,24 +1,96 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
 
 function NavBar() {
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="">IMDB App</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/moviecreation">Add Movie</Nav.Link>
-            <Nav.Link href="/actorcreation">Add Actor</Nav.Link>
-            <Nav.Link href="/producercreation">Add Producer</Nav.Link>
-            <Nav.Link herf="#snjfkjs">Add Genre</Nav.Link>
-          </Nav>
+      <AppBar
+        elevation={5}
+        position="sticky"
+        sx={{ backgroundColor: "black", color: "white" }}
+      >
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            {/* <IconButton size="large" sx={{ p: 1 }}>
+                <Avatar  alt="IIITV" src={img_url}/>
+              </IconButton> */}
+
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 1000,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              IMDB APP
+            </Typography>
+
+            <Box
+              sx={{
+                marginLeft: "auto",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="a"
+                href="/moviecreation"
+                sx={{ mr: 2, color: "inherit", textDecoration: "none" }}
+              >
+                Add Movie
+              </Typography>
+
+              <Typography
+                variant="body1"
+                component="a"
+                href="/actorcreation"
+                sx={{ mr: 2, color: "inherit", textDecoration: "none" }}
+              >
+                Add Actor
+              </Typography>
+              <Typography
+                variant="body1"
+                component="a"
+                href="/producercreation"
+                sx={{ mr: 2, color: "inherit", textDecoration: "none" }}
+              >
+                Add Producer
+              </Typography>
+              <Typography
+                variant="body1"
+                component="a"
+                href="/genrecreation"
+                sx={{ mr: 2, color: "inherit", textDecoration: "none" }}
+              >
+                Add Genre
+              </Typography>
+            </Box>
+          </Toolbar>
         </Container>
-      </Navbar>
-      
+      </AppBar>
     </>
   );
 }
