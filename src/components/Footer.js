@@ -18,6 +18,7 @@ const Footer = () => {
       maxWidth="xl"
       sx={{ bgcolor: "black", height: 280 }}
       position="fixed"
+      
     >
       <Box
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}

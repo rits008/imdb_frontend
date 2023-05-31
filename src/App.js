@@ -1,15 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import Explore from './components/explore';
-import ActorCreation from './components/actorCreation';
-import ProducerCreation from './components/producerCreation';
-import MovieCreation from './components/movieCreation';
-import MovieListing from './components/movieListing';
+import Explore from './components/Explore';
+import ActorCreation from './components/ActorCreation';
+import ProducerCreation from './components/ProducerCreation';
+import MovieCreation from './components/MovieCreation';
+import MovieListing from './components/MovieListing';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import NavBar from './components/Navbar';
-import GenreCreation from './components/genreCreation';
+import GenreCreation from './components/GenreCreation';
 import Footer from './components/Footer';
 function App() {
   

@@ -54,6 +54,13 @@ function NavBar() {
                 alignItems: "center",
               }}
             >
+            <Typography
+            variant="body1"
+                component="a"
+                href="/"
+                sx={{ mr: 2, color: "inherit", textDecoration: "none" }}>Home
+
+            </Typography>
               <Typography
                 variant="body1"
                 component="a"

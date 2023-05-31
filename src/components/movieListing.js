@@ -9,6 +9,7 @@ import Container from "@mui/material/Container";
 
 const MovieListing = () => {
   const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(false);
 
   const fetchMovies = async () => {
     try {
@@ -17,12 +18,21 @@ const MovieListing = () => {
       setMovies(data);
     } catch (error) {
       console.log(error);
+      setError(true);
     }
   };
 
   useEffect(() => {
     fetchMovies();
   }, []);
+
+  if (error) {
+    return (
+      <div>
+        <h1>something went wrong . Failed to fetch movies</h1>
+      </div>
+    );
+  }
 
   return (
     <Container maxWidth="xl" sx={{ marginTop: 4, marginBottom: 4 }}>
@@ -39,7 +49,9 @@ const MovieListing = () => {
               <CardContent>
                 <h4>{movie.name}</h4>
               </CardContent>
-              <CardContent sx={{ flexGrow: 1, display: "flex", alignItems: "flex-end" }}>
+              <CardContent
+                sx={{ flexGrow: 1, display: "flex", alignItems: "flex-end" }}
+              >
                 <Button
                   component={Link}
                   to={{
