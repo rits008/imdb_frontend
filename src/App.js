@@ -15,9 +15,10 @@ function App() {
   
   return (
     <>
+    <div className="App">
     <NavBar/>
     <Router>
-      <div className="App">
+      <div >
         <Routes>
          
           <Route exact path="/" element={<MovieListing />} />
@@ -30,6 +31,7 @@ function App() {
       </div>
     </Router>
     <Footer/>
+    </div>
     </>
   
   );

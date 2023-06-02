@@ -65,7 +65,7 @@ function ActorCreation() {
           boxShadow: 5,
         }}
       >
-        <Paper elevation={5}>
+        <Paper elevation={5} >
           <Form onSubmit={handleSubmit}>
             <LogoImage
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFj6WlBAWMBA6EHlNAcKDJCYb8OQjOZ1zeH6gvl-lhWJ3cpzp_nyQWT4NTLkeNu3TAbaw&usqp=CAU"
