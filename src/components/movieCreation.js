@@ -117,6 +117,8 @@ function MovieCreation() {
       });
       if (response.ok) {
         // handle success
+        alert("form success succesfully");
+        e.target.reset();
       } else {
         // handle error
       }

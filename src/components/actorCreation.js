@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button, TextField, Paper } from "@mui/material";
+import { Container, Button, TextField, Paper, MenuItem } from "@mui/material";
 import { Box } from "@mui/system";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/system";
@@ -45,7 +45,8 @@ function ActorCreation() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        console.log("created");
+        alert("form success succesfully");
+        e.target.reset();
       } else {
         console.log("else");
       }
@@ -117,9 +118,9 @@ function ActorCreation() {
               onChange={handleInputChange}
               sx={{ width: "100%", m: 2 }}
             >
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
+              <MenuItem value="Male">Male</MenuItem>
+              <MenuItem value="Female">Female</MenuItem>
+              <MenuItem value="Other">Other</MenuItem>
             </TextField>
             <Button type="submit" variant="contained" color="primary">
               Add
