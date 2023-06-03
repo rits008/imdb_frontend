@@ -39,18 +39,16 @@ function Explore() {
   const handleSaveEdit = async (editedMovieData) => {
     try {
       const response = await fetch(`http://localhost:58873/movies/${id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(editedMovieData),
       });
       if (response.ok) {
-      
         setMovieData(editedMovieData);
         setEditOpen(false);
       } else {
-       
       }
     } catch (error) {
       console.log(error);
@@ -59,20 +57,17 @@ function Explore() {
   const handleDelete = async () => {
     try {
       const response = await fetch(`http://localhost:58873/movies/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
       if (response.ok) {
-       
         console.log("Deleted successfully");
         navigate(-1);
       } else {
-      
       }
     } catch (error) {
       console.log(error);
     }
   };
-
 
   if (!movieData) {
     return <div>Loading...</div>;

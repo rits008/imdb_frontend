@@ -38,6 +38,8 @@ function GenreCreation() {
       });
       if (response.ok) {
         console.log("created");
+        alert("form success succesfully");
+        e.target.reset();
       } else {
         console.log("else");
       }

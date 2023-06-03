@@ -1,18 +1,10 @@
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 
 function NavBar() {
   return (
@@ -20,7 +12,7 @@ function NavBar() {
       <AppBar
         elevation={5}
         position="sticky"
-        sx={{ backgroundColor: "black", color: "white" }}
+        sx={{ backgroundColor: "rgb(35 48 66)", color: "white" }}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -42,8 +34,9 @@ function NavBar() {
                 color: "inherit",
                 textDecoration: "none",
               }}
+              
             >
-              IMDB APP
+              MOVIE APP
             </Typography>
 
             <Box
@@ -54,46 +47,51 @@ function NavBar() {
                 alignItems: "center",
               }}
             >
-            <Typography
-            variant="body1"
+              <Button
+                variant="outlined"
+                color="primary"
                 component="a"
                 href="/"
-                sx={{ mr: 2, color: "inherit", textDecoration: "none" }}>Home
-
-            </Typography>
-              <Typography
-                variant="body1"
+                sx={{ mr: 2, color: "inherit", textDecoration: "none" }}
+              >
+                Home
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
                 component="a"
                 href="/moviecreation"
                 sx={{ mr: 2, color: "inherit", textDecoration: "none" }}
               >
                 Add Movie
-              </Typography>
-
-              <Typography
-                variant="body1"
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
                 component="a"
                 href="/actorcreation"
                 sx={{ mr: 2, color: "inherit", textDecoration: "none" }}
               >
                 Add Actor
-              </Typography>
-              <Typography
-                variant="body1"
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
                 component="a"
                 href="/producercreation"
                 sx={{ mr: 2, color: "inherit", textDecoration: "none" }}
               >
-                Add Producer
-              </Typography>
-              <Typography
-                variant="body1"
+                Actor Producer
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
                 component="a"
                 href="/genrecreation"
                 sx={{ mr: 2, color: "inherit", textDecoration: "none" }}
               >
                 Add Genre
-              </Typography>
+              </Button>
             </Box>
           </Toolbar>
         </Container>
