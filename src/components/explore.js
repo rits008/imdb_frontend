@@ -61,6 +61,7 @@ function Explore() {
       });
       if (response.ok) {
         console.log("Deleted successfully");
+        alert("Movie Deleted Successfully")
         navigate(-1);
       } else {
       }
