@@ -38,7 +38,7 @@ const MovieListing = () => {
     setCurrentPage(pageNumber);
   };
 
-  if (error || movies.length === 0) {
+  if (error) {
     if (error) {
       return (
         <Container sx={{ marginTop: 4, marginBottom: 4, color: "white" }}>
@@ -47,15 +47,17 @@ const MovieListing = () => {
           </Typography>
         </Container>
       );
-    } else {
-      return (
-        <Container sx={{ marginTop: 4, marginBottom: 4, color: "white" }}>
-          <Typography>
-            <h1>There are no movies. Please create some.</h1>
-          </Typography>
-        </Container>
-      );
     }
+  }
+  else if(movies.length===0 && error===false)
+  {
+    return (
+      <Container sx={{ marginTop: 4, marginBottom: 4, color: "white" }}>
+        <Typography>
+          <h1>There are no movies. Please create some.</h1>
+        </Typography>
+      </Container>
+    );
   }
 
   return (
@@ -71,9 +73,10 @@ const MovieListing = () => {
                 >
                   <CardMedia
                     component="img"
-                    height="200"
+                    height="350"
                     image={movie.coverImage}
                     alt="Movie Poster"
+                    sx={{ objectFit: "cover" }}
                   />
                   <CardContent sx={{ color: "white" }}>
                     <h4>{movie.name}</h4>
@@ -104,7 +107,6 @@ const MovieListing = () => {
             </Grid>
           ))}
         </Grid>
-
         <Pagination
           count={Math.ceil(movies.length / moviesPerPage)}
           variant="outlined"
