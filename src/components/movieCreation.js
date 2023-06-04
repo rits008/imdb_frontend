@@ -117,8 +117,16 @@ function MovieCreation() {
       });
       if (response.ok) {
         // handle success
-        alert("form success succesfully");
-        e.target.reset();
+        alert("Movie Created succesfully");
+        setFormData({
+          name: "",
+          yearOfRelease: "",
+          plot: "",
+          actorsId: [],
+          genres: [],
+          producerId: "",
+          coverImage: "",
+        });
       } else {
         // handle error
       }

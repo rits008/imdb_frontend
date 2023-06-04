@@ -47,8 +47,13 @@ function ProducerCreation() {
       });
       if (response.ok) {
         console.log("created");
-        alert("form success succesfully");
-        e.target.reset();
+        alert("Producer Created Successfully");
+        setFormData({
+          name:"",
+          bio:"",
+          dob:"",
+          gender:""
+        });
       } else {
         console.log("else");
       }

@@ -61,6 +61,7 @@ function Explore() {
       });
       if (response.ok) {
         console.log("Deleted successfully");
+        alert("Movie Deleted Successfully");
         navigate(-1);
       } else {
       }
@@ -90,16 +91,17 @@ function Explore() {
             <img
               src={movieData.coverImage}
               alt="Movie Image"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              height="500"
+              style={{ margin: 4 }}
             />
           </Paper>
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <Paper elevation={5}>
+          <Paper elevation={5} sx={{ height: 500 }}>
             <Box p={2}>
               <Typography variant="h4" component="h1" gutterBottom>
-                {movieData.name}
+                <strong>{movieData.name}</strong>
               </Typography>
               <Typography variant="body1" gutterBottom>
                 {movieData.plot}
@@ -107,23 +109,25 @@ function Explore() {
 
               <Box sx={{ mt: 2 }}>
                 <Typography variant="subtitle1">
-                  Producer: {movieData.producer.name}
+                  <strong>Producer: </strong>
+                  {movieData.producer.name}
                 </Typography>
                 <Typography variant="subtitle1">
-                  Actors:{" "}
+                  <strong>Actors:</strong>{" "}
                   {movieData.actors.map((actor) => actor.name).join(", ")}
                 </Typography>
                 <Typography variant="subtitle1">
-                  Release Date: {movieData.yearOfRelease}
+                  <strong>Release Date:</strong>
+                  {movieData.yearOfRelease}
                 </Typography>
                 <Typography variant="subtitle1">
-                  Genre:{" "}
+                  <strong>Genre:</strong>{" "}
                   {movieData.genres.map((genre) => genre.name).join(", ")}
                 </Typography>
               </Box>
 
               <Typography variant="h6" component="h2" sx={{ mt: 4 }}>
-                Plot
+                <strong>Plot</strong>
               </Typography>
               <Typography variant="body1">{movieData.plot}</Typography>
             </Box>

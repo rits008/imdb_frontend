@@ -38,7 +38,7 @@ function GenreCreation() {
       });
       if (response.ok) {
         console.log("created");
-        alert("form success succesfully");
+        alert("Genre Created Successfully");
         e.target.reset();
       } else {
         console.log("else");

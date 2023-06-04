@@ -45,8 +45,13 @@ function ActorCreation() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        alert("form success succesfully");
-        e.target.reset();
+        alert("Actor Created Successfully");
+        setFormData({
+          name:"",
+          bio:"",
+          dob:"",
+          gender:""
+        });
       } else {
         console.log("else");
       }
